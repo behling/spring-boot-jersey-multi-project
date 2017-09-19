@@ -13,9 +13,9 @@ pipeline {
             steps { 
                 sh 'ls'
                 sh 'pwd'
-                sh './gradlew clean build'
+               /* sh './gradlew clean build'
                 dir('service-jersey-app/build/distributions/'){
-                    stash includes: '*.zip', name: 'artefato'    
+                    stash includes: '*.zip', name: 'artefato'    */
                 }
             }
 
@@ -26,9 +26,10 @@ pipeline {
                 timeout(time:1, unit:'DAYS') {
                     input message: 'Are you sure?'
                 } 
-                sshagent (credentials: ['servidor-treinamento']) {            
+                echo 'Deploy PROD'                
+             /*   sshagent (credentials: ['servidor-treinamento']) {            
                      sh 'scp -o StrictHostKeyChecking=no service-jersey-app-1.1.zip ubuntu@172.31.9.116:~'
-                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 "unzip service-jersey-app-1.1.zip"'
+                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 "unzip service-jersey-app-1.1.zip"' */
                 }
             }
         }
