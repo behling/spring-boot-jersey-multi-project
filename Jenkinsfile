@@ -21,14 +21,6 @@ pipeline {
 
         }
 
-        stage('Release'){
-            steps{
-                unstash 'artefato'
-                sh 'ls'
-                archiveArtifacts artifacts: '*.zip'
-            }
-        }
-
         stage('Deploy PROD') {
             steps {
                 timeout(time:1, unit:'DAYS') {
