@@ -15,10 +15,9 @@ pipeline {
                 sh 'pwd'
                /* sh './gradlew clean build'
                 dir('service-jersey-app/build/distributions/'){
-                    stash includes: '*.zip', name: 'artefato'    */
+                    stash includes: '*.zip', name: 'artefato'
                 }
-            }
-
+            }    */
         }
 
         stage('Deploy PROD') {
