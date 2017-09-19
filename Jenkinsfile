@@ -15,10 +15,9 @@ pipeline {
                 sh 'pwd'
                 sh './gradlew clean build'
                 sh 'ls -alF'
-                /*
                 dir('service-jersey-app/build/distributions/'){
                     stash includes: '*.zip', name: 'artefato'
-                }  */
+                }
             }  
         }
 
@@ -28,10 +27,11 @@ pipeline {
                     input message: 'Are you sure?'
                 } 
                 echo 'Deploy PROD'                
-             /*   sshagent (credentials: ['servidor-treinamento']) {            
-                     sh 'scp -o StrictHostKeyChecking=no service-jersey-app-1.1.zip ubuntu@172.31.9.116:~'
-                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 "unzip service-jersey-app-1.1.zip"'
-                } */
+                sshagent (credentials: ['servidor-treinamento']) {
+                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 mkdir Cleiton'
+                     sh 'scp -o StrictHostKeyChecking=no service-jersey-app-1.1.zip ubuntu@172.31.9.116:~/Cleiton/'
+                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 "cd Cleiton && unzip service-jersey-app-1.1.zip"'
+                } 
             }
         }
     }
