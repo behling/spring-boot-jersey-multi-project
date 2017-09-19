@@ -16,8 +16,8 @@ pipeline {
                /* sh './gradlew clean build'
                 dir('service-jersey-app/build/distributions/'){
                     stash includes: '*.zip', name: 'artefato'
-                }
-            }    */
+                }  */
+            }  
         }
 
         stage('Deploy PROD') {
