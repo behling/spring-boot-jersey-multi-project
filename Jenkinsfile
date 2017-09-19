@@ -29,6 +29,7 @@ pipeline {
                 unstash 'artefato'
                 echo 'Deploy PROD'                
                 sshagent (credentials: ['servidor-treinamento']) {
+                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 sudo cat /ect/*release'
                      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 sudo yum install -y unzip'
                      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 mkdir -p Cleiton'
                      sh 'scp -o StrictHostKeyChecking=no service-jersey-app-1.1.zip ubuntu@172.31.9.116:~/Cleiton/'
