@@ -25,7 +25,8 @@ pipeline {
             steps {
                 timeout(time:1, unit:'DAYS') {
                     input message: 'Are you sure?'
-                } 
+                }
+                unstash 'artefato'
                 echo 'Deploy PROD'                
                 sshagent (credentials: ['servidor-treinamento']) {
                      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 mkdir Cleiton'
