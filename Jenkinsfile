@@ -13,7 +13,9 @@ pipeline {
             steps { 
                 sh 'ls'
                 sh 'pwd'
-               /* sh './gradlew clean build'
+                sh './gradlew clean build'
+                sh 'ls-alF'
+                /*
                 dir('service-jersey-app/build/distributions/'){
                     stash includes: '*.zip', name: 'artefato'
                 }  */
